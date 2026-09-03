@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>OpenCode</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/drawer.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/chat.css">
+<link rel="stylesheet" href="css/welcome.css">
+<link rel="stylesheet" href="css/splash.css">
+<link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+
+<div id="splash">
+  <div class="stage">
+    <div class="glow"></div>
+    <svg class="mark" viewBox="0 0 432 432">
+      <defs>
+        <linearGradient id="gd0" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3DDC84"/><stop offset=".6" stop-color="#1FA063"/><stop offset="1" stop-color="#C9A227"/>
+        </linearGradient>
+        <filter id="soft0" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="10" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- garis energi -->
+      <g stroke="#1E3A2F" stroke-width="3" opacity=".8">
+        <line x1="52" y1="96" x2="128" y2="96"/>
+        <line x1="36" y1="120" x2="96" y2="120"/>
+      </g>
+      <g stroke="#2A4A3A" stroke-width="3" opacity=".6">
+        <line x1="304" y1="356" x2="380" y2="356"/>
+        <line x1="336" y1="380" x2="396" y2="380"/>
+      </g>
+      <!-- bingkai -->
+      <g class="frm">
+        <path d="M132 84 H300 Q316 84 316 100 V196" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round"/>
+        <path d="M316 268 V300 Q316 316 300 316 H100 Q84 316 84 300 V100 Q84 84 100 84" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round" opacity=".92"/>
+      </g>
+      <!-- kotak ijo + glow -->
+      <g filter="url(#soft0)">
+        <rect class="cur" x="238" y="238" width="118" height="118" rx="14" fill="url(#gd0)" transform="rotate(8 297 297)"/>
+      </g>
+      <rect x="238" y="238" width="118" height="118" rx="14" fill="none" stroke="#F2F2EC" stroke-width="3" opacity=".5" transform="rotate(8 297 297)"/>
+      <!-- led status -->
+      <circle class="led" cx="352" cy="84" r="10" fill="#3DDC84"/>
+      <circle class="ledhalo" cx="352" cy="84" r="16" fill="none" stroke="#3DDC84" stroke-width="2" opacity=".4"/>
+    </svg>
+  </div>
+  <div class="nm"><b>Open</b><span style="color:#3DDC84">Code</span></div>
+  <div class="sub">Menyiapkan Server AI</div>
+  <div id="spbar"><div id="spfill"></div></div>
+  <p id="spnum">0%</p>
+</div>
+
+<div id="drawer">
+  <div class="d-head">
+    <svg class="mark" viewBox="0 0 432 432">
+      <defs>
+        <linearGradient id="gd1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3DDC84"/><stop offset=".6" stop-color="#1FA063"/><stop offset="1" stop-color="#C9A227"/>
+        </linearGradient>
+        <filter id="soft1" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="10" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g stroke="#1E3A2F" stroke-width="3" opacity=".8">
+        <line x1="52" y1="96" x2="128" y2="96"/>
+        <line x1="36" y1="120" x2="96" y2="120"/>
+      </g>
+      <g stroke="#2A4A3A" stroke-width="3" opacity=".6">
+        <line x1="304" y1="356" x2="380" y2="356"/>
+        <line x1="336" y1="380" x2="396" y2="380"/>
+      </g>
+      <path d="M132 84 H300 Q316 84 316 100 V196" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round"/>
+      <path d="M316 268 V300 Q316 316 300 316 H100 Q84 316 84 300 V100 Q84 84 100 84" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round" opacity=".92"/>
+      <g filter="url(#soft1)">
+        <rect x="238" y="238" width="118" height="118" rx="14" fill="url(#gd1)" transform="rotate(8 297 297)"/>
+      </g>
+      <rect x="238" y="238" width="118" height="118" rx="14" fill="none" stroke="#F2F2EC" stroke-width="3" opacity=".5" transform="rotate(8 297 297)"/>
+      <circle cx="352" cy="84" r="10" fill="#3DDC84"/>
+      <circle cx="352" cy="84" r="16" fill="none" stroke="#3DDC84" stroke-width="2" opacity=".4"/>
+    </svg>
+    <div><b>OpenCode</b></div>
+  </div>
+  <div class="d-body">
+    <button class="d-item primary" id="dnew"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/></svg></span> Obrolan Baru</button>
+    <div class="d-sep">RIWAYAT</div>
+    <div id="hlist"></div>
+    <button class="d-item" id="dconfig"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2" fill="#3DDC84"/><circle cx="16" cy="12" r="2" fill="#3DDC84"/><circle cx="10" cy="18" r="2" fill="#3DDC84"/></svg></span> Konfigurasi</button>
+    <button class="d-item" id="dmodel"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 1 4.5 2.8A4 4 0 0 1 20 8.5a4 4 0 0 1-1.2 2.9A4.5 4.5 0 0 1 17 18h-2a3 3 0 0 1-3-3v-1a3 3 0 0 0-3-3H7a4 4 0 0 1-1-7.9A5 5 0 0 1 12 2z"/><path d="M12 2v4M8.5 5.5L10 7M15.5 5.5L14 7"/><path d="M9 18h6"/></svg></span> Ganti Model</button>
+    <button class="d-item" id="dgame"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#C9A227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.3 5H6.7a4.7 4.7 0 0 0-4.6 5.6l.9 4.6A3 3 0 0 0 6 17.6c.8 0 1.6-.3 2.1-.9L9.6 15h4.8l1.5 1.7c.5.6 1.3.9 2.1.9a3 3 0 0 0 3-2.4l.9-4.6A4.7 4.7 0 0 0 17.3 5z"/><line x1="7.5" y1="11" x2="10.5" y2="11"/><line x1="9" y1="9.5" x2="9" y2="12.5"/><circle cx="15" cy="11.5" r=".9" fill="#C9A227"/><circle cx="16.8" cy="9.7" r=".9" fill="#C9A227"/></svg></span> Game</button>
+    <button class="d-item" id="dprivacy"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/><path d="M19.14 12.94a7.07 7.07 0 0 0 .06-.94c0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a6.94 6.94 0 0 0-1.63-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.63.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.37 1.04.7 1.63.94l.36 2.54c.05.24.26.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.57 1.63-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.03-1.58z"/></svg></span> Pengaturan</button>
+    <button class="d-item" id="dsource"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6EC6FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span> Source Code</button>
+    <button class="d-item" id="dupdate"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></span> Cek Update</button>
+  </div>
+  <div class="d-foot" id="dver">Powered By Nemo</div>
+</div>
+<div id="scrim"></div>
+
+<header>
+  <button class="hbtn" id="bmenu"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  <button id="mchip"><div id="dot"></div><span class="lbl" id="mname">Muse Spark</span><span class="car"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+  <div class="spacer"></div>
+  <button class="hbtn" id="blang" title="Bahasa balasan"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2v3"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg></button>
+  <button class="hbtn" id="bnew" title="Obrolan Baru"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/></svg></button>
+</header>
+
+<div id="ubanner"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E8D9A0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg> Update Tersedia: <b id="utag"></b><button id="ubtn">LIHAT</button></div>
+
+<div id="chatwrap">
+<div id="chat">
+  <div id="hello">
+    <svg class="mark" viewBox="0 0 432 432">
+      <defs>
+        <linearGradient id="gd2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3DDC84"/><stop offset=".6" stop-color="#1FA063"/><stop offset="1" stop-color="#C9A227"/>
+        </linearGradient>
+        <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="10" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g stroke="#1E3A2F" stroke-width="3" opacity=".8">
+        <line x1="52" y1="96" x2="128" y2="96"/>
+        <line x1="36" y1="120" x2="96" y2="120"/>
+      </g>
+      <g stroke="#2A4A3A" stroke-width="3" opacity=".6">
+        <line x1="304" y1="356" x2="380" y2="356"/>
+        <line x1="336" y1="380" x2="396" y2="380"/>
+      </g>
+      <path d="M132 84 H300 Q316 84 316 100 V196" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round"/>
+      <path d="M316 268 V300 Q316 316 300 316 H100 Q84 316 84 300 V100 Q84 84 100 84" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round" opacity=".92"/>
+      <g filter="url(#soft2)">
+        <rect x="238" y="238" width="118" height="118" rx="14" fill="url(#gd2)" transform="rotate(8 297 297)"/>
+      </g>
+      <rect x="238" y="238" width="118" height="118" rx="14" fill="none" stroke="#F2F2EC" stroke-width="3" opacity=".5" transform="rotate(8 297 297)"/>
+      <circle cx="352" cy="84" r="10" fill="#3DDC84"/>
+      <circle cx="352" cy="84" r="16" fill="none" stroke="#3DDC84" stroke-width="2" opacity=".4"/>
+    </svg>
+    <h2><b>Ada yang bisa</b> <span>dibantu?</span></h2>
+    <div class="ai-badge"><span class="dot"></span> Mimo 2.5 Free — Aktif</div>
+    <div id="chips">
+      <button class="chip" data-q="Jelaskan isi folder kerja /work dan buatkan ringkasannya"><b><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-2H5a2 2 0 0 0-2 2z"/><circle cx="11" cy="12" r="3"/><path d="M13.5 10.5L16 13"/></svg> Jelaskan folder kerja</b>lihat isi /work lalu rangkum</button>
+      <button class="chip" data-q="Buatkan script bash untuk backup folder otomatis, jelaskan langkahnya"><b><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#FFD93D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/><path d="M15 3l3 4-3 4"/></svg> Bikin script</b>backup folder otomatis</button>
+      <button class="chip" data-q="Jelaskan cara kerja proot dalam menjalankan Linux di Android tanpa root"><b><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#88C999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><circle cx="9" cy="10" r="1.5" fill="#88C999"/><circle cx="15" cy="10" r="1.5" fill="#88C999"/><path d="M8 15c1.5 2 6.5 2 8 0"/></svg> Cara kerja proot</b>Linux di Android tanpa root</button>
+      <button class="chip" data-q="Buatkan REST API Node.js sederhana dengan CRUD lengkap dan penjelasan"><b><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#6EC6FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/><circle cx="17" cy="7" r="3" fill="none"/><path d="M17 4v6M14 7h6"/></svg> Node.js API</b>REST API CRUD sederhana</button>
+    </div>
+  </div>
+</div>
+
+<div id="bar">
+  <div id="pill">
+    <button id="battach" class="plus" title="Lampirkan file"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></button>
+    <button id="bsearch" class="search-toggle" title="Pencarian Web Real-Time"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/></svg></button>
+    <textarea id="inp" rows="1" placeholder="Tanya apa aja..."></textarea>
+    <button id="go"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+  </div>
+  <div id="attachbar"><span>Lampiran:</span> <b id="att-name"></b><button id="att-x" title="Hapus lampiran"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><button id="att-send" title="Kirim lampiran"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+  <div id="hint"></div>
+</div>
+
+<div id="ov">
+  <div class="stage">
+    <div class="glow"></div>
+    <svg class="mark" viewBox="0 0 432 432">
+      <defs>
+        <linearGradient id="gd3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3DDC84"/><stop offset=".6" stop-color="#1FA063"/><stop offset="1" stop-color="#C9A227"/>
+        </linearGradient>
+        <filter id="soft3" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="10" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- garis energi -->
+      <g stroke="#1E3A2F" stroke-width="3" opacity=".8">
+        <line x1="52" y1="96" x2="128" y2="96"/>
+        <line x1="36" y1="120" x2="96" y2="120"/>
+      </g>
+      <g stroke="#2A4A3A" stroke-width="3" opacity=".6">
+        <line x1="304" y1="356" x2="380" y2="356"/>
+        <line x1="336" y1="380" x2="396" y2="380"/>
+      </g>
+      <!-- bingkai -->
+      <g class="frm">
+        <path d="M132 84 H300 Q316 84 316 100 V196" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round"/>
+        <path d="M316 268 V300 Q316 316 300 316 H100 Q84 316 84 300 V100 Q84 84 100 84" fill="none" stroke="#F2F2EC" stroke-width="18" stroke-linecap="round" opacity=".92"/>
+      </g>
+      <!-- kotak ijo + glow -->
+      <g filter="url(#soft3)">
+        <rect class="cur" x="238" y="238" width="118" height="118" rx="14" fill="url(#gd3)" transform="rotate(8 297 297)"/>
+      </g>
+      <rect x="238" y="238" width="118" height="118" rx="14" fill="none" stroke="#F2F2EC" stroke-width="3" opacity=".5" transform="rotate(8 297 297)"/>
+      <!-- led status -->
+      <circle cx="352" cy="84" r="10" fill="#3DDC84"/>
+      <circle cx="352" cy="84" r="16" fill="none" stroke="#3DDC84" stroke-width="2" opacity=".4"/>
+    </svg>
+  </div>
+  <h2>BERSIAP...</h2>
+  <p id="ovp">Menyiapkan...</p>
+  <div id="pring"><svg viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="19" stroke="#1E3A2F" stroke-width="5"/><path d="M23 4a19 19 0 0 1 16.5 9.5" stroke="#3DDC84" stroke-width="5" stroke-linecap="round"/></svg></div>
+  <div id="ovready">✓ Siap!</div>
+  <div id="pbar"><div id="pfill"></div></div>
+  <p id="pnum" style="margin-top:10px">0 file</p>
+  <p id="ovtime"></p>
+  <div id="ovsteps"><span class="stp" id="st0"><i></i>Ekstrak</span><span class="ln" id="ln0"></span><span class="stp" id="st1"><i></i>Server</span><span class="ln" id="ln1"></span><span class="stp" id="st2"><i></i>Siap</span></div>
+  <div id="ovfx" aria-hidden="true"><span>❯</span><span>❯</span><span>❯</span><span>❯</span><span>❯</span></div>
+  <button id="ovretry">Coba Lagi</button>
+</div>
+
+<div class="modal" id="mmodel">
+  <div class="card">
+    <h3>PILIH MODEL</h3>
+    <div class="mlist" id="mlist"></div>
+    <label>Model kustom</label>
+    <input id="cmcustom" placeholder="Provider/Nama-Model">
+    <div class="acts"><button class="bb ghost" id="mclose">Tutup</button></div>
+  </div>
+</div>
+
+<div class="modal" id="mgames">
+  <div class="card gcard">
+    <div id="gmenu">
+      <h3>GAME</h3>
+      <div class="gsub">pilih 1 buat main</div>
+      <div class="ggrid">
+        <button class="gopt" data-g="snake"><span class="gicon"><svg viewBox="0 0 48 48" fill="none" stroke="#3DDC84" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34c6 0 6-8 12-8s6 8 12 8 6-8 8-8"/><circle cx="42" cy="26" r="4" fill="#3DDC84" stroke="none"/><circle cx="43.5" cy="25" r="1.2" fill="#0C100E" stroke="none"/></svg></span><span class="gname">Ular</span><span class="gbest" id="gb-snake"></span></button>
+        <button class="gopt" data-g="quiz"><span class="gicon"><svg viewBox="0 0 48 48" fill="none" stroke="#6EC6FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><path d="M18.5 19.5a5.5 5.5 0 0 1 10.6 1.5c0 3.5-5 4-5 7"/><circle cx="24.2" cy="33" r=".8" fill="#6EC6FF"/></svg></span><span class="gname">Quiz Otak</span><span class="gbest" id="gb-quiz"></span></button>
+        <button class="gopt" data-g="puzzle"><span class="gicon"><svg viewBox="0 0 48 48" fill="none" stroke="#C9A227" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="3"/><rect x="26" y="9" width="13" height="13" rx="3"/><rect x="9" y="26" width="13" height="13" rx="3"/><rect x="26" y="26" width="13" height="13" rx="3" fill="#C9A227" stroke="none" opacity=".8"/></svg></span><span class="gname">Puzzle</span><span class="gbest" id="gb-puzzle"></span></button>
+        <button class="gopt" data-g="ludo"><span class="gicon"><svg viewBox="0 0 48 48" fill="none" stroke="#E08A7B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="30" height="30" rx="7"/><circle cx="18" cy="18" r="2.4" fill="#E08A7B" stroke="none"/><circle cx="30" cy="18" r="2.4" fill="#E08A7B" stroke="none"/><circle cx="24" cy="24" r="2.4" fill="#E08A7B" stroke="none"/><circle cx="18" cy="30" r="2.4" fill="#E08A7B" stroke="none"/><circle cx="30" cy="30" r="2.4" fill="#E08A7B" stroke="none"/></svg></span><span class="gname">Ludo</span><span class="gbest" id="gb-ludo"></span></button>
+        <button class="gopt" data-g="tic"><span class="gicon"><svg viewBox="0 0 48 48" fill="none" stroke="#E8A05D" stroke-width="2.6" stroke-linecap="round"><rect x="7" y="7" width="34" height="34" rx="8"/><line x1="18.3" y1="7" x2="18.3" y2="41"/><line x1="29.7" y1="7" x2="29.7" y2="41"/><line x1="7" y1="18.3" x2="41" y2="18.3"/><line x1="7" y1="29.7" x2="41" y2="29.7"/><path d="M10.5 10.5l4.5 4.5M15 10.5l-4.5 4.5" stroke-width="2.6"/><circle cx="35.3" cy="35.3" r="3.4" stroke-width="2.6"/></svg></span><span class="gname">TicTac</span><span class="gbest" id="gb-tic"></span></button>
+      </div>
+      <div class="acts"><button class="bb ghost" id="gclose">Tutup</button></div>
+    </div>
+    <div id="gstage" style="display:none">
+      <div class="ghead"><button class="bb ghost" id="gback">‹ Kembali</button><h3 id="gtitle">GAME</h3><div id="gscore"></div></div>
+      <div id="gbody"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="mlang">
+  <div class="card">
+    <h3>BAHASA BALASAN</h3>
+    <div class="mlist" id="llist"></div>
+    <div class="acts"><button class="bb ghost" id="lclose">Tutup</button></div>
+  </div>
+</div>
+
+<div class="modal" id="mconfig">
+  <div class="card">
+    <h3>KONFIGURASI</h3>
+    <label>Provider</label>
+    <select id="cprov">
+      <option value="opencode">OpenCode (Default)</option>
+      <option value="anthropic">Anthropic (Claude)</option>
+      <option value="openai">OpenAI (ChatGPT)</option>
+      <option value="openrouter">OpenRouter</option>
+      <option value="google">Google (Gemini)</option>
+    </select>
+    <label>API Key (opsional)</label>
+    <input id="ckey" type="password" placeholder="Kosongkan Untuk Model Gratis">
+    <div class="hint">Default Sudah Pakai Model Gratis Tanpa Key. Key Lain: <a href="#" onclick="Android.openUrl('https://console.opencode.ai');return false">console.opencode.ai</a></div>
+    <label>Model</label>
+    <input id="cmodel" placeholder="default: opencode/mimo-v2.5-free">
+    <div class="acts">
+      <button class="bb ghost" id="closem">Tutup</button>
+      <button class="bb" id="save">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<button id="down"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+<div id="toast"></div>
+
+<!-- Context Menu Riwayat -->
+<div class="hctx-scrim" id="hctx-scrim"></div>
+<div class="hctx" id="hctx">
+  <button class="hctx-item" id="hctx-pin"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3.5l5 5-3 3-1.5-0.5-4 4 1 3.5-3 1.5-5-5 1.5-3 3.5 1 4-4-0.5-1.5 3-3z"/><circle cx="7" cy="17" r="1.5" fill="currentColor" stroke="none"/></svg> Sematkan</button>
+  <button class="hctx-item" id="hctx-rename"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg> Ganti Nama</button>
+  <button class="hctx-item danger" id="hctx-delete"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Hapus</button>
+</div>
+
+<!-- Modal Ganti Nama -->
+<div class="modal" id="mrename">
+  <div class="card">
+    <h3>GANTI NAMA OBROLAN</h3>
+    <input id="renameInput" placeholder="Nama baru" maxlength="50">
+    <div class="acts">
+      <button class="bb ghost" id="rnClose">Batal</button>
+      <button class="bb" id="rnSave">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Pengaturan (Gabungan Tema + Privasi) -->
+<!-- Modal Pengaturan -->
+<div class="modal" id="mprivacy">
+  <div class="card">
+    <h3>PENGATURAN</h3>
+    <button class="pr-btn" id="btn-theme"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg> Tema</button>
+    <button class="pr-btn" id="btn-privacy"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Privasi & Data</button>
+    <button class="pr-btn" id="pbackup"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Backup Riwayat</button>
+    <button class="pr-btn" id="pimport"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6EC6FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Import Riwayat</button>
+    <button class="pr-btn pr-del" id="pdelete"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E08A7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Hapus Semua Riwayat</button>
+    <div class="acts"><button class="bb ghost" id="prclose">Tutup</button></div>
+  </div>
+</div>
+
+<!-- Modal Tema -->
+<div class="modal" id="mtheme">
+  <div class="card">
+    <h3>TEMA</h3>
+    <p class="pr-text">Pilih tampilan yang paling nyaman untuk mata Anda.</p>
+    <div class="mlist" id="thlist"></div>
+    <div class="acts"><button class="bb ghost" id="thclose">Kembali</button></div>
+  </div>
+</div>
+
+<!-- Modal Privasi & Data -->
+<div class="modal" id="mprivdata">
+  <div class="card">
+    <h3>PRIVASI & DATA</h3>
+    <div class="pr-text">
+      <p>Privasi Anda adalah prioritas kami. Semua data obrolan tetap di perangkat Anda dan tidak dibagikan ke pihak ketiga.</p>
+      <p><strong>Bagaimana data Anda digunakan:</strong></p>
+      <p>Saat Anda mengirim pesan, pesan dikirim ke server AI (seperti OpenRouter atau API lainnya) untuk diproses. Server tersebut tidak menyimpan pesan Anda secara permanen.</p>
+      <p><strong>Yang kami kumpulkan:</strong></p>
+      <p>• Pengaturan aplikasi (model, provider, bahasa)<br>Riwayat obrolan disimpan lokal di perangkat Anda.<br>Tidak ada data pribadi yang dikumpulkan atau dijual.</p>
+      <p><strong>Hak Anda:</strong></p>
+      <p>• Menghapus semua riwayat kapan saja<br>Menonaktifkan pencarian web<br>Mengubah model AI sesuai kebutuhan</p>
+    </div>
+    <div class="acts"><button class="bb ghost" id="privclose">Kembali</button></div>
+  </div>
+</div>
+
+
+
+<!-- Modal Source Code -->
+<div class="modal" id="msource">
+  <div class="card">
+    <h3>SOURCE CODE</h3>
+    <p class="pr-text">Pilih repository source code yang ingin Anda lihat.</p>
+    <div class="pr-actions">
+      <button class="pr-btn" onclick="Android.openUrl('https://github.com/anomalyco/opencode')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> OpenCode (Asli)</button>
+      <button class="pr-btn" onclick="Android.openUrl('https://github.com/nemoobc/opencode-android')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6EC6FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> OpenCode Android (Nemo)</button>
+    </div>
+    <div class="acts"><button class="bb ghost" id="sourceclose">Tutup</button></div>
+  </div>
+</div>
+
+<!-- hapus modal mtheme lama -->
+
+<script src="js/bridge.js"></script>
+<script src="js/websearch.js"></script>
+<script src="js/init.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/stream.js"></script>
+<script src="js/send.js"></script>
+<script src="js/history.js"></script>
+<script src="js/models.js"></script>
+<script src="js/games.js"></script>
+<script src="js/g-snake.js"></script>
+<script src="js/g-quiz.js"></script>
+<script src="js/g-puzzle.js"></script>
+<script src="js/g-ludo.js"></script>
+<script src="js/g-tic.js"></script>
+</body>
+</html>
