@@ -131,7 +131,24 @@
     saveConfig: function(p, k, m) { localStorage.setItem('oc-cfg', JSON.stringify({provider:p,key:k,model:m})); },
     readConfig: function() { return localStorage.getItem('oc-cfg') || '{}'; },
     fetchModels: function() {},
-    pickFile: function() { var input = document.createElement('input'); input.type = 'file'; input.onchange = function() { var f = input.files[0]; if (f) window.onFileReady(f.name, f.name); }; input.click(); },
+    pickFile: function() {
+      var input = document.createElement('input');
+      input.type = 'file';
+      input.onchange = function() {
+        var f = input.files[0];
+        if (!f) return;
+        /* mode dev-lock: baca isi teks langsung (web ga ada path file) */
+        if (window._devPick && typeof window._devFileText === 'function' && typeof FileReader !== 'undefined') {
+          var rd = new FileReader();
+          rd.onload = function() { try { window._devFileText(rd.result); } catch (e) {} };
+          rd.onerror = function() { try { window._devFileText(''); } catch (e) {} };
+          rd.readAsText(f);
+          return;
+        }
+        if (f) window.onFileReady(f.name, f.name);
+      };
+      input.click();
+    },
     readImageDataUrl: function(p) { return null; },
     appInfo: function() { return 'web-1.0'; }
   };

@@ -23,3 +23,8 @@ kill $(cat server.pid)
 - Game, tema, riwayat: jalan penuh (localStorage browser).
 - Folder ini TERPISAH dari repo app — edit app tidak otomatis ikut.
   Sync ulang: `cp -a ~/opencode-android/assets/ui/. ~/opencode-android-web/docs/`
+
+## Fitur Developer (demo)
+- Tap teks versi di drawer **5x** → kunci developer.
+- Kunci demo: bikin file teks isi `demo123`, pilih file itu.
+- Di APK asli: pakai file `license.key` beneran.
