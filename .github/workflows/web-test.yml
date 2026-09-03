@@ -1,0 +1,35 @@
+name: web-test (emulator browser)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths: ['docs/**', 'webtest.js', '.github/workflows/web-test.yml']
+
+jobs:
+  webtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: install playwright + chromium
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm i -D playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium
+      - name: serve lokal (isolasi, tanpa nunggu Pages)
+        run: |
+          (python3 -m http.server 8901 --directory docs > http.log 2>&1 &)
+          sleep 2
+          curl -s -o /dev/null -w "serve %{http_code}\n" http://127.0.0.1:8901/
+      - name: jalanin webtest
+        run: node webtest.js http://127.0.0.1:8901 shots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: web-shots
+          path: |
+            shots/*.png
+            http.log
