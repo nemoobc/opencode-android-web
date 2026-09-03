@@ -135,13 +135,19 @@
       var input = document.createElement('input');
       input.type = 'file';
       input.onchange = function() {
+        try { input.value = ''; } catch (e) {}
         var f = input.files[0];
         if (!f) return;
         /* mode dev-lock: baca isi teks langsung (web ga ada path file) */
         if (window._devPick && typeof window._devFileText === 'function' && typeof FileReader !== 'undefined') {
+          var dm = document.getElementById('dev-msg');
+          if (dm) dm.textContent = 'Membaca file...';
           var rd = new FileReader();
-          rd.onload = function() { try { window._devFileText(rd.result); } catch (e) {} };
-          rd.onerror = function() { try { window._devFileText(''); } catch (e) {} };
+          rd.onload = function() { try { window._devFileText(rd.result); } catch (e) {
+            if (dm) dm.textContent = 'Gagal baca: ' + e; } };
+          rd.onerror = function() {
+            if (dm) dm.textContent = 'File tidak terbaca oleh browser.';
+            try { window._devFileText(''); } catch (e) {} };
           rd.readAsText(f);
           return;
         }
