@@ -176,7 +176,7 @@ svg.tstrike line { stroke:url(#tgd); stroke-width:6; stroke-linecap:round; strok
 @keyframes boomGo { from { transform:scale(.3); opacity:1; } to { transform:scale(1.6); opacity:0; } }
 .lutok.canmove::before { border-color:#fff; box-shadow:0 0 0 3px #ffffff88, 0 0 14px #ffffff66; }
 .lurow { display:flex; align-items:center; gap:12px; }
-.luteams { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; padding:2px 4px; }
+.luteams { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; padding:2px 4px; width:100%; }
 .luteams .tm { display:flex; align-items:center; gap:6px; }
 .lubarbottom { display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; background:#16283C; border:1px solid #2c4a6b; border-radius:14px; padding:8px 14px; }
 .lubarbottom .who { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700; }
@@ -198,8 +198,7 @@ svg.tstrike line { stroke:url(#tgd); stroke-width:6; stroke-linecap:round; strok
 .luturn.swap { animation:turnSwap .3s ease-out; }
 @keyframes turnSwap { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
 .lulog { font-size:12px; color:var(--muted); min-height:48px; max-height:48px; overflow:hidden; text-align:center; max-width:100%; line-height:1.5; }
-.luboard.shake { animation:boShake .4s ease; }
-@keyframes boShake { 0%,100% { transform:translate(0); } 25% { transform:translate(-4px,2px) rotate(-.5deg); } 50% { transform:translate(4px,-2px) rotate(.5deg); } 75% { transform:translate(-3px,-1px); } }
+ 25% { transform:translate(-4px,2px) rotate(-.5deg); } 50% { transform:translate(4px,-2px) rotate(.5deg); } 75% { transform:translate(-3px,-1px); } }
 .lutray { display:flex; gap:14px; font-size:12px; font-weight:700; justify-content:center; }
 .lutray > span { display:flex; align-items:center; gap:3px; background:var(--surface); border:1px solid var(--surface-border); border-radius:8px; padding:3px 7px; }
 .lurules { width:100%; font-size:12px; color:var(--muted); background:var(--bg); border:1px solid var(--surface-border); border-radius:10px; padding:8px 12px; }
