@@ -30,6 +30,8 @@
       if (xhr.status === 200) {
         try { _ocSession = JSON.parse(xhr.responseText).data.id; } catch(e) {}
       } else {
+        _netFail++;
+        if (_netFail >= 3) { _ocSession = 'local'; return; } /* 404/Pages = tanpa server */
         retrySession();
       }
     };
