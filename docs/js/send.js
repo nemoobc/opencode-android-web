@@ -23,6 +23,17 @@ function send(t, label, imgPrev, retryMode) {
   window._tskip = 0;
   clearInterval(window._swTimer);
 
+  /* AI gambar: "buatkan gambar ..." → langsung generate, tanpa LLM */
+  if (!imgPrev && !retryMode && Media.imgRequest(t)) {
+    doImage(t, label);
+    return;
+  }
+  /* AI file: "buatkan file ..." → tanya dulu: chat atau file? */
+  if (!imgPrev && !retryMode && Media.fileRequest(t)) {
+    askFileMode(label || t);
+    return;
+  }
+
   /* determine if we should search */
   var shouldSearch = WebSearch.enabled && !imgPrev && !retryMode && t.length > 5;
   var searchQuery = shouldSearch ? WebSearch.sanitizeQuery(t) : null;
@@ -118,6 +129,7 @@ function doSend(t, label, imgPrev, retryMode, searchResults) {
 function forceStop() {
   clearTimeout(window._cw);
   if (typeof stopTyper === 'function') stopTyper();
+  window._fileMode = null;
   if (window._done || !busy) return;
   window._done = true;
   busy = false;

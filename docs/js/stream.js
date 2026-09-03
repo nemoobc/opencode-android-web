@@ -108,6 +108,12 @@ window.onDone = function(code, tok) {
 };
 function finishMarkdown(code) {
   if (typeof stopTyper === 'function') stopTyper();
+  /* mode file: render kartu file, bukan markdown */
+  if (!window._canceling && window._fileMode && (window._plain || '').trim()) {
+    window._fileMode = null;
+    onFileDone(code, (window._plain || '').trim());
+    return;
+  }
   if (window._cur) {
     var plain = (window._plain || '').trim();
     if (window._canceling) {
