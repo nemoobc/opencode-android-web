@@ -20,6 +20,7 @@
   var OC_API = '';
   var _ocSession = null;
   var _ocRetries = 0;
+  var _netFail = 0; /* gagal koneksi mentah (tanpa server) → lokal cepat */
 
   function createSession() {
     var xhr = new XMLHttpRequest();
@@ -32,7 +33,11 @@
         retrySession();
       }
     };
-    xhr.onerror = function() { retrySession(); };
+    xhr.onerror = function() {
+      _netFail++;
+      if (_netFail >= 3) { _ocSession = 'local'; return; } /* offline jelas → langsung lokal */
+      retrySession();
+    };
     xhr.send('{}');
   }
   /* mode offline (GitHub Pages statis, tanpa server): jawab simulasi lokal.
