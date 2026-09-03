@@ -190,6 +190,36 @@ function check(name, cond, extra) {
   await page.screenshot({ path: SHOT + '/13-model.png' });
   await page.click('#mclose').catch(() => {});
 
+  // 8. developer: tap versi 5x + PIN + cancel
+  await page.click('#bmenu').catch(() => {});
+  await page.waitForTimeout(500);
+  for (let i = 0; i < 5; i++) { await page.click('#dver'); await page.waitForTimeout(120); }
+  await page.waitForTimeout(400);
+  const lockOpen = await page.evaluate(() => document.getElementById('mdev').classList.contains('show'));
+  check('dev lock buka', lockOpen);
+  await page.screenshot({ path: SHOT + '/14-devlock.png' });
+  await page.fill('#dev-pin', '000000');
+  await page.click('#dev-go');
+  await page.waitForTimeout(400);
+  const stillLock = await page.evaluate(() => {
+    const p = document.getElementById('dev-panel');
+    return !p || p.style.display === 'none';
+  });
+  check('PIN salah ditolak', stillLock);
+  await page.fill('#dev-pin', '112233');
+  await page.click('#dev-go');
+  await page.waitForTimeout(600);
+  const panelOn = await page.evaluate(() => {
+    const p = document.getElementById('dev-panel');
+    return p && p.style.display !== 'none';
+  });
+  check('PIN bener buka panel', panelOn);
+  await page.screenshot({ path: SHOT + '/15-devpanel.png' });
+  await page.click('#dev-close2');
+  await page.waitForTimeout(400);
+  const closed = await page.evaluate(() => !document.getElementById('mdev').classList.contains('show'));
+  check('cancel tutup', closed);
+
   check('tanpa JS error', errs.length === 0, errs.slice(0, 3).join(' | '));
   await browser.close();
   console.log(fails === 0 ? 'WEBTEST-OK' : 'WEBTEST-GAGAL: ' + fails);
