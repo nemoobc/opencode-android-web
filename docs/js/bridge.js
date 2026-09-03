@@ -51,6 +51,15 @@
   ];
   function localFake() {
     var text = LOCAL_ANS[_localN++ % LOCAL_ANS.length];
+    /* sumber simulasi biar footer + sitasi konsisten (demo tanpa DDG) */
+    try {
+      if (typeof WebSearch !== 'undefined' && WebSearch) {
+        WebSearch.lastResults = [
+          { title: 'Harga Emas Hari Ini — Logam Mulia', url: 'https://ex.com/emas', snippet: 'Emas naik' },
+          { title: 'Grafik Emas 2026 Naik Terus', url: 'https://ex.com/grafik', snippet: 'Tren menguat' }
+        ];
+      }
+    } catch (e) {}
     var words = text.split(' '), wi = 0;
     var si = setInterval(function() {
       if (wi < words.length) { if (typeof window.appendOut === 'function') window.appendOut(words[wi] + ' '); wi++; }
