@@ -44,9 +44,14 @@ function check(name, cond, extra) {
     await inp.fill('harga emas hari ini berapa?');
     await page.click('#go');
   }
+  // tunggu jawaban SELESAI (markdown render = onDone kelar), bukan kata pertama
   await page.waitForFunction(
-    () => document.querySelectorAll('.msg.ai').length > 0 &&
-      /Rp|Emas|Harga|Sumber/i.test(document.querySelectorAll('.msg.ai')[0].textContent || ''),
+    () => {
+      const a = document.querySelectorAll('.msg.ai');
+      if (!a.length) return false;
+      const last = a[a.length - 1];
+      return last.querySelector('.md') && /Rp|Emas|Harga|Sumber/i.test(last.textContent || '');
+    },
     { timeout: 60000 }
   ).catch(() => {});
   await page.waitForTimeout(1000);
