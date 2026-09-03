@@ -19,13 +19,16 @@ jobs:
           npm init -y >/dev/null 2>&1 || true
           npm i -D playwright >/dev/null 2>&1
           npx playwright install --with-deps chromium
-      - name: serve lokal (isolasi, tanpa nunggu Pages)
+      - name: tunggu Pages deploy (anti versi basi)
         run: |
-          (python3 -m http.server 8901 --directory docs > http.log 2>&1 &)
-          sleep 2
-          curl -s -o /dev/null -w "serve %{http_code}\n" http://127.0.0.1:8901/
-      - name: jalanin webtest
-        run: node webtest.js http://127.0.0.1:8901 shots
+          for i in $(seq 1 30); do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" https://nemoobc.github.io/opencode-android-web/ || echo 000)
+            [ "$CODE" = "200" ] && echo "pages OK" && break
+            sleep 10
+          done
+          sleep 90
+      - name: jalanin webtest (Pages REAL)
+        run: node webtest.js https://nemoobc.github.io/opencode-android-web/ shots
       - uses: actions/upload-artifact@v4
         if: always()
         with:
