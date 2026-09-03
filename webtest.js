@@ -38,7 +38,10 @@ function check(name, cond, extra) {
   await page.waitForTimeout(1500);
   await page.screenshot({ path: SHOT + '/2-chat-siap.png' });
 
-  // 3. kirim pesan (mode offline canned)
+  // 3. nyalakan web DULU biar footer sumber ada
+  await page.click('#bsearch');
+  await page.waitForTimeout(300);
+  // kirim pesan (mode offline canned)
   const inp = await page.$('#inp');
   check('input ada', !!inp);
   if (inp) {
@@ -177,7 +180,7 @@ function check(name, cond, extra) {
     await page.click('#gclose').catch(() => {});
   }
 
-  // 7. toggle web + modal model
+  // 7. toggle web (sekarang ON → matikan, harus berubah)
   const t0 = await page.evaluate(() => document.getElementById('bsearch').classList.contains('active'));
   await page.click('#bsearch');
   await page.waitForTimeout(300);
